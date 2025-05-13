@@ -1,17 +1,9 @@
 /* General page styling */
 body {
     font-family: Arial, sans-serif;
-    background-color: #f5f5f5;
+    background-color: #ffd8d8;
     margin: 0;
     padding: 0;
-  }
-  
-  /* Container styling */
-  .container {
-    width: 90%;
-    max-width: 1200px;
-    margin: 20px auto;
-    padding: 20px;
   }
   
   /* Title styling */
@@ -51,12 +43,7 @@ body {
     transform: scale(1.05);
   }
   
-  /* Card image styling */
-  .card img {
-    width: 100%;
-    height: auto;
-  }
-  
+
   /* Card body styling */
   .card-body {
     padding: 15px;
@@ -75,7 +62,7 @@ body {
   }
   
   /* Pokémon detail page styling */
-  .pokemon-detail {
+/*   .pokemon-detail {
     text-align: center;
   }
   
@@ -89,9 +76,9 @@ body {
     font-size: 1.1em;
   }
   
-  /* Chart container styling */
+  #Chart container styling
   .pokemon-stats {
     width: 100%;
     max-width: 600px;
     margin: 40px auto;
-  }
+  } */

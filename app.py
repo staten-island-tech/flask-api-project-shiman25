@@ -1,61 +1,19 @@
-from flask import Flask, render_template
 import requests
 
-app = Flask(__name__)
+response = requests.get("https://api.magicthegathering.io/v1/cards")
+data = response.json()
+cards = data.get("cards", [])
 
-@app.route("/")
-def index():
-    
-    response = requests.get("https://api.magicthegathering.io/v1/cards")
+# Get all cards
+cards = Card.all()
 
-    data = response.json()
-    cards_list = data.get('cards',[])
-    
-    # Create a list to hold card details
-    cards = []
-    
-    for card in cards_list:
-        url = card['url']
-        parts = url.strip("/").split("/")
-        id = card[-1] 
-        
-        cards.append({
-            'name': card['name'],
-            'id': id,
-        })
-    
-    # Send the card list to the index.html page
-    return render_template("index.html", cards=cards)
+# Filter Cards
+# You can chain 'where' clauses together. The key of the hash
+# should be the URL parameter you are trying to filter on
+cards = Card.where(supertypes='legendary') \
+            .where(types='creature') \
+            .where(colors='red,white') \
+            .all()
 
-""" # New route: When a user clicks a Pokémon card, this page shows more details and a stats chart
-@app.route("/pokemon/<int:id>")
-def pokemon_detail(id):
-    # Get detailed info for the Pokémon using its id
-    response = requests.get(f"https://pokeapi.co/api/v2/pokemon/{id}")
-    data = response.json()
-    
-    # Extract extra details like types, height, and weight
-    types = [t['type']['name'] for t in data['types']]
-    height = data.get('height')
-    weight = data.get('weight')
-    name = data.get('name').capitalize()
-    image_url = f"https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/{id}.png"
-    
-    # Extract base stats for the chart (e.g., hp, attack, defense, etc.)
-    stat_names = [stat['stat']['name'] for stat in data['stats']]
-    stat_values = [stat['base_stat'] for stat in data['stats']]
-    
-    # Send all details to the pokemon.html template
-    return render_template("pokemon.html", pokemon={
-        'name': name,
-        'id': id,
-        'image': image_url,
-        'types': types,
-        'height': height,
-        'weight': weight,
-        'stat_names': stat_names,
-        'stat_values': stat_values
-    })
- """
-if __name__ == '__main__':
-    app.run(debug=True)
+# Get cards on a specific page / pageSize
+cards = Card.where(page=50).where(pageSize=50).all()
