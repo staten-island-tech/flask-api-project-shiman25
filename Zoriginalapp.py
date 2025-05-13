@@ -5,29 +5,33 @@ app = Flask(__name__)
 
 @app.route("/")
 def index():
-    
-    response = requests.get("https://api.magicthegathering.io/v1/cards")
-
+    # Get the first 150 Pokémon from the API
+    response = requests.get("https://pokeapi.co/api/v2/pokemon?limit=150")
     data = response.json()
-    cards_list = data.get('cards',[])
+    pokemon_list = data['results']
     
-    # Create a list to hold card details
-    cards = []
+    # Create a list to hold Pokémon details
+    pokemons = []
     
-    for card in cards_list:
-        url = card['url']
+    for pokemon in pokemon_list:
+        # Each Pokémon URL looks like "https://pokeapi.co/api/v2/pokemon/1/"
+        url = pokemon['url']
         parts = url.strip("/").split("/")
-        id = card[-1] 
+        id = parts[-1]  # The last part is the Pokémon's ID
         
-        cards.append({
-            'name': card['name'],
+        # Create an image URL using the Pokémon's ID
+        image_url = f"https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/{id}.png"
+        
+        pokemons.append({
+            'name': pokemon['name'].capitalize(),
             'id': id,
+            'image': image_url
         })
     
-    # Send the card list to the index.html page
-    return render_template("index.html", cards=cards)
+    # Send the Pokémon list to the index.html page
+    return render_template("index.html", pokemons=pokemons)
 
-""" # New route: When a user clicks a Pokémon card, this page shows more details and a stats chart
+# New route: When a user clicks a Pokémon card, this page shows more details and a stats chart
 @app.route("/pokemon/<int:id>")
 def pokemon_detail(id):
     # Get detailed info for the Pokémon using its id
@@ -56,6 +60,6 @@ def pokemon_detail(id):
         'stat_names': stat_names,
         'stat_values': stat_values
     })
- """
+
 if __name__ == '__main__':
     app.run(debug=True)
