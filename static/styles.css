@@ -12,14 +12,6 @@ body {
     margin-bottom: 40px;
   }
   
-  /* Card container styling */
-  .card-container {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 20px;
-    justify-content: center;
-  }
-  
   /* Remove link default styles */
   .card-link {
     text-decoration: none;
@@ -27,7 +19,7 @@ body {
   }
   
   /* Individual card styling */
-  .card {
+  .Card {
     background-color: #fff;
     border: 1px solid #ddd;
     border-radius: 8px;
@@ -61,24 +53,4 @@ body {
     margin-top: 5px;
   }
   
-  /* Pokémon detail page styling */
-/*   .pokemon-detail {
-    text-align: center;
-  }
-  
-  .pokemon-detail img {
-    width: 200px;
-    height: auto;
-    margin-bottom: 20px;
-  }
-  
-  .pokemon-detail p {
-    font-size: 1.1em;
-  }
-  
-  #Chart container styling
-  .pokemon-stats {
-    width: 100%;
-    max-width: 600px;
-    margin: 40px auto;
-  } */
+ 
