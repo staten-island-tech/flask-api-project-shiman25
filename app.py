@@ -5,11 +5,11 @@ app = Flask(__name__)
 
 
 
-@app.route('/')
-def index():
-    response = requests.get("https://api.magicthegathering.io/v1/cards")
-    data = response.json()
+response = requests.get("https://api.magicthegathering.io/v1/cards")
+data = response.json()
     
-    for card in data:
-        print(card)
+cards = data["cards"]
+for card in cards:
 
+    if card["cmc"] < 5:
+        print(card['name'])
