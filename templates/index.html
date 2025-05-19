@@ -2,7 +2,7 @@
 <html>
   <head>
     <meta charset="UTF-8" />
-    <title>MTG</title>
+    <title>MTG cards</title>
     <!-- Link to your CSS stylesheet -->
     <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}" />
   </head>
@@ -10,15 +10,11 @@
   
       <h1>MTG cards!</h1>
       <div class="card-container">
-        
-        <ul>
-          {% for card in cards %}
-            {% if card.id %}
-              <li><a href="{{ url_for('card_detail', card_id=card.id) }}">{{ card.name }}</a></li>
-            {% else %}
-              <li>{{ card.name }} (No ID)</li>
-            {% endif %}
-          {% endfor %}
+        {% for card in cards %}
+        <li> {{ card.name }} </a>
+      </li>
+
+        {% endfor %}
         </ul>
       </div>
   </body>

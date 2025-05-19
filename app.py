@@ -2,14 +2,20 @@ from flask import Flask, render_template
 import requests
 app = Flask(__name__)
 
-
-
-
-response = requests.get("https://api.magicthegathering.io/v1/cards")
-data = response.json()
+@app.route("/")
+def index():
+    response = requests.get("https://api.magicthegathering.io/v1/cards")
+    data = response.json()
+    mtg_list = data['cards']
+        
+    cards = []
     
-cards = data["cards"]
-for card in cards:
+    for card in mtg_list:
+        cards.append(card)
+        #print(card['name'])
+    
+        
+    return render_template("index.html", cards=cards)
 
-    if card["cmc"] < 5:
-        print(card['name'])
+if __name__ == '__main__':
+    app.run(debug=True) 
