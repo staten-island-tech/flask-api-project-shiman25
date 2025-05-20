@@ -11,7 +11,8 @@
       <h1>MTG cards!</h1>
       <div class="card-container">
         {% for card in cards %}
-        <li> {{ card.name }} </a>
+        {{ card.name }} </a>
+          <img src="{{ card.image }}" alt="{{ card.name }}" />
       </li>
 
         {% endfor %}
