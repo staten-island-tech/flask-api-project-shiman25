@@ -16,18 +16,24 @@ def index():
         
         cards.append({
             'name': card['name'],
-            'id': card.get('multiverseid'),
-            'image': card.get('imageUrl')
         })
 
     return render_template("index.html", cards=cards)
 
-@app.route("/detail")
+@app.route("/detail/card.name")
 def detail():
-    return render_template("detail.html")
+    response = requests.get(f"https://api.magicthegathering.io/v1/cards")
+    data = response.json()
+    card = data.get()
+    name = card['name'],
+    id = card.get('multiverseid'),
+    image = card.get('imageUrl')
 
-
-
+    return render_template("detail.html", card=
+        image = image,
+        
+                           
+        )
 
 if __name__ == '__main__':
     app.run(debug=True) 
