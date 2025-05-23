@@ -9,31 +9,24 @@ def index():
     mtg_list = data['cards']
         
     cards = []
-    images = []
+
     for card in mtg_list:
-        cards.append(card['name'])
-        images.append(card.get("imageUrl"))
-        
-        cards.append({
-            'name': card['name'],
-        })
+
+        name = card('name')
+        id = card.get('multiverseid')
+        if id:
+            cards.append(name,id)
 
     return render_template("index.html", cards=cards)
 
-@app.route("/detail/card.name")
-def detail():
-    response = requests.get(f"https://api.magicthegathering.io/v1/cards")
+@app.route("/detail/card/<int:id>")
+def detail(id):
+    response = requests.get(f"https://api.magicthegathering.io/v1/cards/{id}")
     data = response.json()
-    card = data.get()
-    name = card['name'],
-    id = card.get('multiverseid'),
-    image = card.get('imageUrl')
+    
+    image = f"http://gatherer.wizards.com/Handlers/Image.ashx?multiverseid={id}&type=card"
 
-    return render_template("detail.html", card=
-        image = image,
-        
-                           
-        )
+    return render_template("detail.html", image = image)
 
 if __name__ == '__main__':
     app.run(debug=True) 

@@ -12,8 +12,11 @@
       <div class="card-container">
         {% for card in cards %}
         <div class="card">
-        <h2>{{ card.name }} </h2>
-        <a href="{{ url_for('detail') }}"><button type ="button">more</button></a>
+        <h2>{{ name }} </h2>
+        <a
+          href="{{ url_for('detail', id=id) }}"
+          class="card-link"
+        >
         </div>
         {% endfor %}
         
