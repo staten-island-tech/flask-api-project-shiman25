@@ -12,10 +12,12 @@ def index():
 
     for card in mtg_list:
 
-        name = card('name')
+        name = card.get('name')
+        
         id = card.get('multiverseid')
         if id:
-            cards.append(name,id)
+            id = int(id.strip("'"))
+            cards.append({'name': name, 'id': id})
 
     return render_template("index.html", cards=cards)
 
@@ -30,7 +32,7 @@ def detail(id):
 
 if __name__ == '__main__':
     app.run(debug=True) 
-""" 
+
 from flask import Flask, render_template
 import requests
 app = Flask(__name__)
@@ -47,7 +49,3 @@ for card in mtg_list:
         cards.append(card)
         image.append(card.get('imageUrl'))
 
-print(image)
-        #print(card['name'])     """
-
-    

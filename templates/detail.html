@@ -1,12 +1,12 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <meta charset="UTF-8" />
-    <title>{{ card.name }} Details</title>
-    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}" />
-  </head>
-  <body>
-    <img src="{{ card.image }}" alt="{{ card.name }}" />
-    <a href="{{ url_for('index') }}"><button type ="button">Back to home</button></a>
-  </body>
+<head>
+  <meta charset="UTF-8" />
+  <title>{{ card.name }} Details</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+  <img src="{{ card.image }}" alt="{{ card.name }}" />
+  <a href="{{ url_for('index') }}"><button type ="button">Back to home</button></a>
+</body>
 </html>
