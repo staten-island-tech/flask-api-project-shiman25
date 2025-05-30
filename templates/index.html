@@ -12,7 +12,7 @@
       <div class="card-container">
         {% for card in cards %}
         <div class="card">
-        <h2>{{ name }} </h2>
+        <h2>{{ card.name }} </h2>
         <a
           href="{{ url_for('detail', id=card.id) }}"
           class="card-link"

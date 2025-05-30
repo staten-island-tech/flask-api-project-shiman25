@@ -24,28 +24,17 @@ def index():
 @app.route("/detail/card/<int:id>")
 def detail(id):
     response = requests.get(f"https://api.magicthegathering.io/v1/cards/{id}")
-    data = response.json()
-    
-    image = f"http://gatherer.wizards.com/Handlers/Image.ashx?multiverseid={id}&type=card"
+    data = response.json()  
 
-    return render_template("detail.html", image = image)
+    mtg_list = data['cards']
+    cards = []
+    image= []
+    for card in mtg_list:
+        image.append(card.get('imageUrl'))
+        cards.append(card)
+        #image.append("No Image")
+        
 
+    return render_template("detail.html",card = card, image = image)
 if __name__ == '__main__':
     app.run(debug=True) 
-
-from flask import Flask, render_template
-import requests
-app = Flask(__name__)
-
-
-
-response = requests.get("https://api.magicthegathering.io/v1/cards")
-data = response.json()
-mtg_list = data['cards']
-        
-cards = []
-image=[]
-for card in mtg_list:
-        cards.append(card)
-        image.append(card.get('imageUrl'))
-
