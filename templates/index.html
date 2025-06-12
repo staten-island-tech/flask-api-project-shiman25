@@ -11,13 +11,12 @@
       <h1>MTG cards!</h1>
       <div class="card-container">
         {% for card in cards %}
-        <div class="card">
-        <h2>{{ card.name }} </h2>
-        <a
-          href="{{ url_for('detail', id=card.id) }}"
-          class="card-link"
-        >
-        </div>
+          <div class="card">
+            <h2>{{ card.name }} </h2>
+            <a href="{{ url_for('detail', id=card.id) }}">
+              <button>See details</button>
+            </a>
+          </div>
         {% endfor %}
         
       </div>

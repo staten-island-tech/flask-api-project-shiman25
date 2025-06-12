@@ -25,8 +25,9 @@ def index():
 def detail(id):
     response = requests.get(f"https://api.magicthegathering.io/v1/cards/{id}")
     data = response.json()  
-
+    
     mtg_list = data['cards']
+    id = mtg_list(card["multiverseid"])
     cards = []
     image= []
     for card in mtg_list:
@@ -35,6 +36,6 @@ def detail(id):
         #image.append("No Image")
         
 
-    return render_template("detail.html",card = card, image = image)
+    return render_template("detail.html", card = card, image = image)
 if __name__ == '__main__':
     app.run(debug=True) 
