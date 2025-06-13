@@ -1,10 +1,10 @@
 body {
   font-family: 'Coming Soon', cursive;
   text-align: left;
-  background-color: #f1bac4;
+  background-color: #ffdde3;
 }
 
-img {
+image {
   box-shadow: 3px 3px 15px rgba(150, 0, 100, 0.699);
 }
 .cards, .card {
